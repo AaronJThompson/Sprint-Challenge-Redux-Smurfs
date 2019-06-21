@@ -65,6 +65,19 @@ export const fetchSmurfs = () => dispatch => {
     })
 };
 
+export const deleteSmurf = (id) => dispatch => {
+  dispatch({ type: actionTypes.DELETING_SMURF });
+  return axios
+    .delete(createAPIUrl(id))
+    .then(res => {
+      dispatch(setSmurfs(res.data));
+      dispatch(requestSuccess());
+    })
+    .catch(error => {
+      dispatch(setError(error.message));
+    })
+}
+
 export const addSmurf = (smurf) => dispatch => {
   dispatch({ type: actionTypes.ADDING_SMURF });
   return axios
