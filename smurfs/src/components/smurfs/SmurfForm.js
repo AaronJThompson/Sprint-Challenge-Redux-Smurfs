@@ -24,8 +24,8 @@ export class SmurfForm extends React.Component {
   componentDidUpdate() {
     if (this.props.currentSmurf) {
       this.nameRef.current.value = this.props.currentSmurf.name;
-      this.ageRef.current.value = parseInt(this.props.currentSmurf.age);
-      this.heightRef.current.value = parseInt(this.props.currentSmurf.height);
+      this.ageRef.current.value = parseInt(this.props.currentSmurf.age, 10);
+      this.heightRef.current.value = parseInt(this.props.currentSmurf.height, 10);
     }
   }
 
@@ -33,7 +33,7 @@ export class SmurfForm extends React.Component {
     e.preventDefault();
     const smurf = {
       name: this.nameRef.current.value,
-      age: parseInt(this.ageRef.current.value),
+      age: parseInt(this.ageRef.current.value, 10),
       height: `${this.heightRef.current.value}cm`,
     };
     this.props.currentSmurf ? this.props.updateSmurf(this.props.currentSmurf.id, smurf) : this.props.addSmurf(smurf);

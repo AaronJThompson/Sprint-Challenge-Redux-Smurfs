@@ -1,5 +1,4 @@
 import { actionTypes as types } from '../actions';
-import { combineReducers } from 'redux';
 /*
   Be sure to import in all of the action types from `../actions`
 */

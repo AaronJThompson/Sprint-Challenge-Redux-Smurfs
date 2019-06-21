@@ -110,7 +110,7 @@ export default function Smurf(props) {
         <SmurfInfo>
           <span>{height} tall</span>
           <HeightLine />
-          <img src={smurfImage} />
+          <img src={smurfImage} alt="Smurf"/>
         </SmurfInfo>
         <p>{age} smurf years old</p>
         <EditButton onClick={editSelf}>Edit</EditButton>
