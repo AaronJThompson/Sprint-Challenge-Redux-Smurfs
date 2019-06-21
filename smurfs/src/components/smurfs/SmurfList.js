@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSmurfs } from '../../reducers'
+import { fetchSmurfs } from '../../actions'
 import Smurf from './Smurf';
 
 class SmurfList extends React.Component {
