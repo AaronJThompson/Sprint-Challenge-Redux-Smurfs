@@ -15,54 +15,64 @@ const StyledButton = styled.button`
   margin: 0 auto;
   border: none;
 `;
-export function SmurfForm(props) {
-  let nameRef = React.createRef();
-  let ageRef = React.createRef();
-  let heightRef = React.createRef();
+export class SmurfForm extends React.Component {
 
-  const addSmurfEvent = (e) => {
-    e.preventDefault();
-    const smurf = {
-      name: nameRef.current.value,
-      age: ageRef.current.value,
-      height: `${heightRef.current.value}cm`,
-    };
-    props.currentSmurf ? props.updateSmurf(props.currentSmurf.id, smurf) : props.addSmurf(smurf);
+  nameRef = React.createRef();
+  ageRef = React.createRef();
+  heightRef = React.createRef();
+
+  componentDidUpdate() {
+    if (this.props.currentSmurf) {
+      this.nameRef.current.value = this.props.currentSmurf.name;
+      this.ageRef.current.value = parseInt(this.props.currentSmurf.age);
+      this.heightRef.current.value = parseInt(this.props.currentSmurf.height);
+    }
   }
 
-  return (
-    <div>
-      <form onSubmit={addSmurfEvent}>
-        <input
-          ref={nameRef}
-          placeholder="name"
-          name="name"
-          type="text"
-          value={props.currentSmurf ? props.currentSmurf.name : ""}
-          required
-        />
-        <input
-          ref={ageRef}
-          placeholder="age"
-          name="age"
-          type="number"
-          value={props.currentSmurf ? props.currentSmurf.age : null}
-          min="1"
-          required
-        />
-        <input
-          ref={heightRef}
-          placeholder="height"
-          name="height"
-          type="number"
-          value={props.currentSmurf ? parseInt(props.currentSmurf.height) : null}
-          min="1"
-          required
-        />
-        <StyledButton type="submit">Add Smurf</StyledButton>
-      </form>
-    </div>
-  );
+  addSmurfEvent = (e) => {
+    e.preventDefault();
+    const smurf = {
+      name: this.nameRef.current.value,
+      age: parseInt(this.ageRef.current.value),
+      height: `${this.heightRef.current.value}cm`,
+    };
+    this.props.currentSmurf ? this.props.updateSmurf(this.props.currentSmurf.id, smurf) : this.props.addSmurf(smurf);
+    this.nameRef.current.value = "";
+    this.ageRef.current.value = "";
+    this.heightRef.current.value = "";
+  }
+  render(){
+    return (
+      <div>
+        <form onSubmit={this.addSmurfEvent}>
+          <input
+            ref={this.nameRef}
+            placeholder="name"
+            name="name"
+            type="text"
+            required
+          />
+          <input
+            ref={this.ageRef}
+            placeholder="age"
+            name="age"
+            type="number"
+            min="1"
+            required
+          />
+          <input
+            ref={this.heightRef}
+            placeholder="height"
+            name="height"
+            type="number"
+            min="1"
+            required
+          />
+          <StyledButton type="submit">{this.props.currentSmurf ? "Update Smurf" : "Add Smurf"}</StyledButton>
+        </form>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
