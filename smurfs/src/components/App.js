@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SmurfList from './smurfs/SmurfList';
 import SmurfForm from './smurfs/SmurfForm';
+import styled from 'styled-components';
 import './App.css';
 /*
  to wire this component up you're going to need a few things.
@@ -8,11 +9,17 @@ import './App.css';
  Just remember, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
+
+const Title = styled.h1`
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+`;
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Smurfs</h1>
+        <Title>Smurfs</Title>
         <SmurfList />
         <SmurfForm />
       </div>

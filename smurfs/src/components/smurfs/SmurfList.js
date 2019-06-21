@@ -2,7 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSmurfs, deleteSmurf, editSmurf } from '../../actions'
 import Smurf from './Smurf';
+import styled from 'styled-components';
 
+const StyledList = styled.ul`
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+`;
 class SmurfList extends React.Component {
     componentDidMount() {
         this.props.fetchSmurfs()
@@ -18,13 +27,13 @@ class SmurfList extends React.Component {
         }
 
         return (
-            <ul>
+            <StyledList>
                 {
                     this.props.smurfs.map((smurf) => {
                         return <Smurf key={smurf.id} smurf={smurf} delete={this.props.deleteSmurf} edit={this.props.editSmurf} />
                     })
                 }
-            </ul>
+            </StyledList>
         )
     }
 }
