@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SmurfList from './smurfs/SmurfList';
+import SmurfForm from './smurfs/SmurfForm';
 import './App.css';
 /*
  to wire this component up you're going to need a few things.
@@ -13,6 +14,7 @@ class App extends Component {
       <div className="App">
         <h1>Smurfs</h1>
         <SmurfList />
+        <SmurfForm />
       </div>
     );
   }
