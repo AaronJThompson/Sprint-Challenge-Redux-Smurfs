@@ -1,7 +1,20 @@
 import React from "react";
+import styled from 'styled-components';
+import Colors from './colors';
 import { connect } from "react-redux";
 import { addSmurf } from "../../actions";
 
+const StyledButton = styled.button`
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: white;
+  background: none;
+  background-color: ${Colors.primary};
+  display: block;
+  margin: 0 auto;
+  border: none;
+`;
 export function SmurfForm(props) {
   let nameRef = React.createRef();
   let ageRef = React.createRef();
@@ -42,7 +55,7 @@ export function SmurfForm(props) {
           min="1"
           required
         />
-        <button type="submit">Add Smurf</button>
+        <StyledButton type="submit">Add Smurf</StyledButton>
       </form>
     </div>
   );

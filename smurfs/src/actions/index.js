@@ -12,6 +12,7 @@ actionTypes.UPDATING_SMURF = 'UPDATING_SMURF';
 actionTypes.SET_SMURFS = 'SET_SMURFS';
 actionTypes.SUCCESS = 'SUCCESS';
 actionTypes.ERROR = 'ERROR';
+actionTypes.EDIT_SMURF = 'EDIT_SMURF';
 /*
   For this project you'll need at least 2 action creators for the main portion,
    and 2 more for the stretch problem.
@@ -89,4 +90,24 @@ export const addSmurf = (smurf) => dispatch => {
     .catch(error => {
       dispatch(setError(error.message));
     })
-} 
+}
+
+export const editSmurf = (smurf) => {
+  return {
+    type: actionTypes.EDIT_SMURF,
+    payload: smurf,
+  }
+}
+
+export const updateSmurf = (id, smurf) => {
+  dispatch({ type: actionTypes.UPDATING_SMURF });
+  return axios
+    .put(createAPIUrl(id), smurf)
+    .then(res => {
+      dispatch(setSmurfs(res.data));
+      dispatch(requestSuccess());
+    })
+    .catch(error => {
+      dispatch(setError(error.message));
+    })
+}
