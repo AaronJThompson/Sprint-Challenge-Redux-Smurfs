@@ -79,9 +79,14 @@ const DeleteButton = styled.button`
 `;
 export default function Smurf(props) {
     const { name, age, height, id } = props.smurf;
-    const deleteSelf = () => {
+    const deleteSelf = (e) => {
+        e.stopPropagation();
         props.delete(id);
     }
+    const editSelf = (e) => {
+        e.stopPropagation();
+        props.edit(props.smurf);
+    } 
     return (
         <SmurfCard>
         <Header>

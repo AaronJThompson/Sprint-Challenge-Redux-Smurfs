@@ -99,7 +99,7 @@ export const editSmurf = (smurf) => {
   }
 }
 
-export const updateSmurf = (id, smurf) => {
+export const updateSmurf = (id, smurf) => dispatch => {
   dispatch({ type: actionTypes.UPDATING_SMURF });
   return axios
     .put(createAPIUrl(id), smurf)

@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import Colors from './colors';
 import { connect } from "react-redux";
-import { addSmurf } from "../../actions";
+import { addSmurf, updateSmurf } from "../../actions";
 
 const StyledButton = styled.button`
   margin-top: 1rem;
@@ -22,11 +22,12 @@ export function SmurfForm(props) {
 
   const addSmurfEvent = (e) => {
     e.preventDefault();
-    props.addSmurf({
+    const smurf = {
       name: nameRef.current.value,
       age: ageRef.current.value,
       height: `${heightRef.current.value}cm`,
-    })
+    };
+    props.currentSmurf ? props.updateSmurf(props.currentSmurf.id, smurf) : props.addSmurf(smurf);
   }
 
   return (
@@ -37,6 +38,7 @@ export function SmurfForm(props) {
           placeholder="name"
           name="name"
           type="text"
+          value={props.currentSmurf ? props.currentSmurf.name : ""}
           required
         />
         <input
@@ -44,6 +46,7 @@ export function SmurfForm(props) {
           placeholder="age"
           name="age"
           type="number"
+          value={props.currentSmurf ? props.currentSmurf.age : null}
           min="1"
           required
         />
@@ -52,6 +55,7 @@ export function SmurfForm(props) {
           placeholder="height"
           name="height"
           type="number"
+          value={props.currentSmurf ? parseInt(props.currentSmurf.height) : null}
           min="1"
           required
         />
@@ -63,6 +67,7 @@ export function SmurfForm(props) {
 
 function mapStateToProps(state) {
   return {
+    currentSmurf: state.currentSmurf,
     error: state.error
   };
 }
@@ -71,6 +76,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    addSmurf
+    addSmurf,
+    updateSmurf,
   }
 )(SmurfForm);

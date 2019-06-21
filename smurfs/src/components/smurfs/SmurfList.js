@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSmurfs, deleteSmurf } from '../../actions'
+import { fetchSmurfs, deleteSmurf, editSmurf } from '../../actions'
 import Smurf from './Smurf';
 
 class SmurfList extends React.Component {
@@ -21,7 +21,7 @@ class SmurfList extends React.Component {
             <ul>
                 {
                     this.props.smurfs.map((smurf) => {
-                        return <Smurf key={smurf.id} smurf={smurf} delete={this.props.deleteSmurf} />
+                        return <Smurf key={smurf.id} smurf={smurf} delete={this.props.deleteSmurf} edit={this.props.editSmurf} />
                     })
                 }
             </ul>
@@ -42,6 +42,7 @@ function mapStateToProps(state) {
     mapStateToProps,
     {
       fetchSmurfs,
-      deleteSmurf
+      deleteSmurf,
+      editSmurf
     }
   )(SmurfList);
