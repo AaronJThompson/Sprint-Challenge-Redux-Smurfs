@@ -75,8 +75,22 @@ const DeleteButton = styled.button`
   display: block;
   margin: 0 auto;
   border: none;
-
 `;
+
+const EditButton = styled.button`
+    padding: 0.2rem 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background: none;
+    background-color: ${Colors.dark};
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    border: none;
+`;
+
 export default function Smurf(props) {
     const { name, age, height, id } = props.smurf;
     const deleteSelf = (e) => {
@@ -99,6 +113,7 @@ export default function Smurf(props) {
           <img src={smurfImage} />
         </SmurfInfo>
         <p>{age} smurf years old</p>
+        <EditButton onClick={editSelf}>Edit</EditButton>
       </SmurfCard>
     )
 }
