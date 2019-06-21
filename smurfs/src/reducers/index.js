@@ -33,7 +33,7 @@ const initialData = {
   error: null,
 }
 
-export function smurfReducer(state = initialData, action) {
+export default function smurfReducer(state = initialData, action) {
   switch(action.type) {
 
     case(types.FETCHING_SMURFS):
@@ -68,7 +68,3 @@ export function smurfReducer(state = initialData, action) {
       return state;
   }
 }
-
-export default combineReducers({
-  smurfs: smurfReducer,
-})
