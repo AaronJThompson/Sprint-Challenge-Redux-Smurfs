@@ -22,9 +22,19 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
-- [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
-- [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+- [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application? 
+
+A: Actions are like packets of data. They are an object usually containing a type and payload. They are sent to the reducer(s) to perform actions on state. It allows us to send data to perform actions rather than performing the actions ourselves, so that the control over state is clearly seperated into sections; actions send the data and action that should be performed and perform any side effects necessary, reducers perform the state changes and the store brings it all together in one place. To expand on reducers, their job is to take in the dispatched actions with their types and payloads, and change their slice of state accordingly. They are not supposed to have any side effects and must be very predicatable, meaning that any data creation or 'randomness' should be provided the the action creators or from elsewhere. Reducers manage and intialise our states.
+The store takes all the combined reducers, extracts and names state sections, and brings it all together to create a single entity that accepts all actions and manages all state. This is why it is known as the single source of truth. Actions creators and reducers may change and create slices of state, however the store is what eventually changes the applications state and manages all the data as a whole.
+
+- [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other? 
+
+A: Application state is the state that the whole application needs to access and must be at the top level of all components. It holds the data that the application needs globally. Some applications store the majority if not all state this way such as redux applications. Component state is the state stored and managed by a single components. It may pass this to children however the component is what holds the state. Component state hold only the state that it and it's children need and usually holds a small part of the applications working data that can be sectioned off to parts of the application. Application state may be used over component state when an application has a purpose that most or all components inherit and help with, such as a search engine where all components need access to the search results and the whole application depends on that data. Component state may be used when the application is highly segmented and components only need small parts of data that concerns their function. An example of this may be a server dashboard, where each panel only needs access to it's assigned server and keeping all servers in a single place may not make sense.
+
+- [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`? 
+
+A: Redux thunk allows our action creators to perform additional and asynchronous side effects. It allows the action creator to perform actions and dispatch the action objects later or as a result of an operation. It also allows us to dispatch mutliple actions to the reducers. Thunk in computer science means to inject additonal calculation into a subroutine. In our instance, it allows us to perform asnynchronous actions on top of our dispatched actions.
+
 
 ## Project Set Up
 
