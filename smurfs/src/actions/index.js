@@ -68,7 +68,7 @@ export const fetchSmurfs = () => dispatch => {
 export const addSmurf = (smurf) => dispatch => {
   dispatch({ type: actionTypes.ADDING_SMURF });
   return axios
-    .post(createAPIUrl())
+    .post(createAPIUrl(), smurf)
     .then(res => {
       dispatch(setSmurfs(res.data));
       dispatch(requestSuccess());

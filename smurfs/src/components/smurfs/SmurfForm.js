@@ -12,7 +12,7 @@ export function SmurfForm(props) {
     props.addSmurf({
       name: nameRef.current.value,
       age: ageRef.current.value,
-      height: heightRef.current.value,
+      height: `${heightRef.current.value}cm`,
     })
   }
 
