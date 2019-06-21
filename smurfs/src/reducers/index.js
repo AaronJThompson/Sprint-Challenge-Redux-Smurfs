@@ -30,6 +30,7 @@ const initialData = {
   addingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,
+  currentSmurf: null,
   error: null,
 }
 
@@ -46,6 +47,8 @@ export default function smurfReducer(state = initialData, action) {
       return { ...state, updatingSmurf: true };
     case(types.SET_SMURFS):
       return { ...state, smurfs: action.payload };
+    case(types.EDIT_SMURF):
+      return { ...state, currentSmurf: action.payload };
     case(types.SUCCESS):
       return {
         ...state,
@@ -53,6 +56,7 @@ export default function smurfReducer(state = initialData, action) {
         addingSmurf: false,
         updatingSmurf: false,
         deletingSmurf: false,
+        currentSmurf: null,
         error: null,
       };
     case(types.ERROR):
@@ -62,6 +66,7 @@ export default function smurfReducer(state = initialData, action) {
         addingSmurf: false,
         updatingSmurf: false,
         deletingSmurf: false,
+        currentSmurf: null,
         error: action.payload,
       };
     default:
