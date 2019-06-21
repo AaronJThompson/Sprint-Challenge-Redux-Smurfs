@@ -23,7 +23,7 @@ actionTypes.ERROR = 'ERROR';
    D - deleteSmurf
 */
 export const createAPIUrl = (...paths) => {
-  const url = 'http://localhost:3333/smurfs'
+  let url = 'http://localhost:3333/smurfs'
   if (paths) {
     paths.forEach(path => {
       url = url.concat(`/${path}`)
